@@ -310,21 +310,35 @@
       </div>
     </div>
     <script src="main.js"></script>
-	<audio id="bgSong" loop autoplay muted preload="auto">
-      <source src="song.mp3" type="audio/mpeg">
-      <source src="song.ogg" type="audio/ogg">
-      Your browser doesn't support audio.
-    </audio>
-	<script>
-    document.addEventListener('click', function unmuteSong() {
-      var audio = document.getElementById('bgSong');
-      audio.muted = false;
-      audio.play().catch(function(e) { console.log('Audio play failed:', e); });
-      document.removeEventListener('click', unmuteSong);  // One-time only
-    }, { once: true });
-    </script>
+	<audio id="bgSong" loop preload="auto">
+  <source src="song.mp3" type="audio/mpeg">
+  <source src="song.ogg" type="audio/ogg">
+  Your browser doesn't support audio.
+</audio>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var audio = document.getElementById('bgSong');
+  var savedTime = sessionStorage.getItem('songTime') || 0;
+  var wasPlaying = sessionStorage.getItem('songPlaying') === 'true';
+  
+  audio.currentTime = parseFloat(savedTime);  // Resume EXACT position
+  audio.muted = false;  // Unmute immediately
+  
+  if (wasPlaying) {
+    audio.play().catch(e => console.log('Play failed:', e));
+  }
+});
+
+document.addEventListener('click', function() {
+  var audio = document.getElementById('bgSong');
+  audio.muted = false;
+  audio.play().catch(e => {});
+}, {once: true});
+</script>
 	
   </body>
 	
 </html>
+
 
