@@ -322,8 +322,8 @@ document.addEventListener('DOMContentLoaded', function() {
   var savedTime = sessionStorage.getItem('songTime') || 0;
   var wasPlaying = sessionStorage.getItem('songPlaying') === 'true';
   
-  audio.currentTime = parseFloat(savedTime);  // Resume EXACT position
-  audio.muted = false;  // Unmute immediately
+  audio.currentTime = parseFloat(savedTime);  
+  audio.muted = false;  
   
   if (wasPlaying) {
     audio.play().catch(e => console.log('Play failed:', e));
@@ -340,5 +340,6 @@ document.addEventListener('click', function() {
   </body>
 	
 </html>
+
 
 
