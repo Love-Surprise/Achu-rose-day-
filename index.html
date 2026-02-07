@@ -12,9 +12,13 @@
   </div>
   
   <div class="next-line">
-    You deserve a<a href="flowers.html" class="flower-link">🌹</a>
+    You deserve a <a href="flowers.html" class="flower-link" onclick="playSong(); return false;">🌹</a>
   </div>
-
+  <audio id="bgSong" loop preload="auto">
+    <source src="song.mp3" type="audio/mpeg">
+    <source src="song.ogg" type="audio/ogg">
+    Your browser doesn't support audio.
+  </audio>
   
   <div class="gradient-bg">
     <svg xmlns="http://www.w3.org/2000/svg">
@@ -39,3 +43,4 @@
 
 </body>
 </html>
+
