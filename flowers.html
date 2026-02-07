@@ -315,8 +315,16 @@
       <source src="song.ogg" type="audio/ogg">
       Your browser doesn't support audio.
     </audio>
+	<script>
+    document.addEventListener('click', function unmuteSong() {
+      var audio = document.getElementById('bgSong');
+      audio.muted = false;
+      audio.play().catch(function(e) { console.log('Audio play failed:', e); });
+      document.removeEventListener('click', unmuteSong);  // One-time only
+    }, { once: true });
+    </script>
 	
   </body>
-
-
+	
 </html>
+
