@@ -40,7 +40,30 @@
       <div class="interactive"></div>
     </div>
   </div>
-
+<script>
+  function playSong() {
+    var audio = document.getElementById('bgSong');
+    audio.play().then(function() {
+      var saveInterval = setInterval(function() {
+        sessionStorage.setItem('songTime', audio.currentTime);
+        sessionStorage.setItem('songPlaying', 'true');
+      }, 250);
+      
+      window.addEventListener('beforeunload', function() {
+        clearInterval(saveInterval);
+        sessionStorage.setItem('songTime', audio.currentTime);
+        sessionStorage.setItem('songPlaying', audio.paused ? 'false' : 'true');
+      }, {once: true});
+      
+      setTimeout(function() {
+        window.location.href = 'flowers.html';
+      }, 2000);
+    }).catch(function() {
+      window.location.href = 'flowers.html';
+    });
+  }
+  </script>
 </body>
 </html>
+
 
